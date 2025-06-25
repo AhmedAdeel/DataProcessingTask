@@ -1,14 +1,19 @@
 Notebook Overview: Company Data Profiling, Validation, and Enrichment
+
 This notebook performs profiling, cleansing, deduplication, API enrichment, validation, and reporting of company-level data. It compares local data against Companies House API responses, flags inconsistencies, and enriches records for downstream use.
+########################################################################
 
 Step 1 – Import Libraries and Load Dataset
+
 Imports essential libraries: pandas, matplotlib, and seaborn.
 
 Loads the main CSV dataset Company.csv into a DataFrame df.
 
 Displays dataset shape and structure using .info().
 
+########################################################################
 Step 2 – Data Profiling
+
 Preview data: Shows first few rows.
 
 Summary stats: Uses describe(include='all') for numeric and categorical insights.
@@ -23,7 +28,9 @@ Displays count of unique values per column.
 
 Prints most common values in PostTown for inspection.
 
+########################################################################
 Step 3 – Data Cleansing
+
 Drops fully empty columns.
 
 Strips whitespaces from column names and string fields.
@@ -38,12 +45,16 @@ Converts date-related fields to datetime.
 
 Confirms cleansing with updated shape.
 
+########################################################################
 Step 4 – Deduplication
+
 Groups data by CompanyNumber and merges duplicate rows using forward and backward fill.
 
 Reduces dataset to unique companies (df_unique).
 
+########################################################################
 Step 5 – API Fetching and Preprocessing
+
 Sets up authentication headers using an API key for Companies House API.
 
 Iterates over all unique CompanyNumber values:
@@ -60,12 +71,16 @@ Converts dates and integers to appropriate types.
 
 Renames API columns with _api suffix to prepare for comparison.
 
+########################################################################
 Step 6 – Data Merge for Validation
+
 Merges df_unique and df_api on CompanyNumber.
 
 Creates a new merged_df with both original and API-sourced fields for side-by-side comparison.
 
+########################################################################
 Step 7 – Field-by-Field Validation (Matching)
+
 Defines a column_map that pairs original columns with their API counterparts.
 
 Implements a function compare_values that:
@@ -78,7 +93,9 @@ Applies this logic to each mapped pair and creates new QA columns (e.g., Company
 
 Resulting validated_df shows whether values match or not.
 
+########################################################################
 Step 8 – Data Enrichment
+
 For each mismatch or missing original value, updates original column with corresponding API value.
 
 Drops temporary _api and _QA columns.
@@ -91,14 +108,18 @@ AccountsOverdue and ReturnsOverdue: flags if due dates have passed
 
 FullAddress: constructs a readable address string
 
+########################################################################
 Step 9 – Reporting and Visualization
+
 Plots a horizontal bar chart showing how many mismatches occurred in each field.
 
 Counts companies with overdue accounts/returns.
 
 Displays a bar chart of the top 10 most common post towns.
 
+########################################################################
 Key Outcomes:
+
 Cleaned and deduplicated dataset of companies.
 
 Validated and enriched using external API data.
