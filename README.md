@@ -1,7 +1,27 @@
-voiNotebook Overview: Company Data Profiling, Validation, and Enrichment
+Notebook Overview: Company Data Profiling, Validation, and Enrichment
 
 This notebook performs profiling, cleansing, deduplication, API enrichment, validation, and reporting of company-level data. It compares local data against Companies House API responses, flags inconsistencies, and enriches records for downstream use.
+
 ########################################################################
+Environment Setup
+1. Create a virtual environment (recommended)
+2. Create a requirements.txt with:
+
+pandas
+matplotlib
+seaborn
+numpy
+sweetviz
+regex
+Ensure you're logged in to your JupyterHub instance via your browser.
+
+Upload this project folder (or clone it from a Git repo) to your JupyterHub environment.
+
+Open the notebook file (.ipynb) inside the JupyterHub interface.
+
+Run the cells sequentially.
+
+#######################################################################
 
 Step 1 – Import Libraries and Load Dataset
 
